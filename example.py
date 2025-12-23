@@ -24,7 +24,8 @@ def main():
     
     print(f"[2] Sending 'Python version?'... (Search: {bot.use_web_search})")
     bot.chat("What is the latest version of Python?")
-    
+
+    # bot.use_image_gen = False 
     print("\n--- Done ---")
 
 if __name__ == "__main__":
