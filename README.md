@@ -1,2 +1,1 @@
-# GLM4Free
-API Wrapper for sending messages to GLM chat.z.ai (with parameters)
+Releasing soon, but yay, GLM4Free I hate x-signature.
