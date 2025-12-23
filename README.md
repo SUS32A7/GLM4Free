@@ -6,14 +6,15 @@ A Python-only client for Z.AI (GLM) that allows you to interact with the LLM for
 
 - **Python Only**: No Node.js, Selenium, or heavy dependencies.
 - **Stream Support**: Real-time streaming of AI responses.
-- **Thinking Mode**: Toggle "Thinking" process.
+- **Thinking Mode**: Toggle "Thinking" process (Chain of Thought).
 - **Web Search**: Toggle capability to search the web.
+- **Image Generation**: Toggle AI image generation features.
 - **CLI & API**: Use it as a library or a command-line tool.
 
 ## Installation
 
 ```bash
-pip install GLM4Free
+pip install glm4free
 ```
 
 ## 🎯 Usage
@@ -31,9 +32,10 @@ bot.initialize()
 print("AI: ", end="")
 bot.chat("Hello! Who are you?")
 
-# Enable Web Search
+# Enable Web Search or Image Gen
 bot.use_web_search = True
-bot.chat("What is the latest Python version?")
+bot.use_image_gen = True
+bot.chat("Generate an image of a futuristic city.")
 ```
 
 ## 👥 CLI
@@ -47,8 +49,10 @@ glm4free
 ## 🔧 Commands
 
 Inside the CLI, you can use:
-- `/search`: Toggle Web Search
-- `/thinking`: Toggle Thinking Mode
+- `/search`: Toggle Web Search (Turned off by default)
+- `/thinking`: Toggle Thinking Mode (Turned on by default)
+- `/image`: Toggle Image Generation (Turned off by default) (Does not work, only returning a prompt)
+- `/preview`: Toggle Preview Mode (Useless) (Turned off by default)
 - `/new`: Start a new conversation
 - `/history`: View conversation history
 - `/exit`: Quit
