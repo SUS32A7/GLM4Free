@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "glm4free"
+version = "1.0.0"
+description = "Unofficial free client & REST API for Z.AI's GLM-4 model"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+dependencies = [
+    "requests>=2.31.0",
+    "fastapi>=0.110.0",
+    "uvicorn[standard]>=0.29.0",
+    "pydantic>=2.0.0",
+]
+
+[project.scripts]
+glm4free     = "glm4free.cli:run_chat"
+glm4free-api = "glm4free.cli:run_api"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["glm4free*"]
