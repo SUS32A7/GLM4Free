@@ -12,6 +12,13 @@ from datetime import datetime
 
 BASE_URL = "https://chat.z.ai"
 
+AVAILABLE_MODELS = [
+    "glm-5",       # Latest flagship — 744B MoE, best reasoning & coding
+    "glm-4.7",     # Previous flagship — solid general purpose
+    "glm-4.5",     # Lighter — 355B MoE, faster responses
+]
+DEFAULT_MODEL = "glm-5"
+
 def scrape_config():
 
     print("[*] Scraping configuration from Z.AI...")
@@ -72,7 +79,7 @@ class ZChat:
         self.user_id = ""
         self.chat_id = str(uuid.uuid4())
         self.messages = []
-        self.model = "glm-4.7"
+        self.model = DEFAULT_MODEL
         self.use_web_search = False
         self.use_thinking = True
         self.use_image_gen = False
@@ -213,7 +220,7 @@ def main():
     
     print("\n--- Z.AI Auto-Config Chat Console ---")
     print(f"Current Settings: Model={bot.model}, WebSearch={bot.use_web_search}, Thinking={bot.use_thinking}")
-    print("Commands: /search, /thinking, /image, /preview, /new, /history, /exit\n")
+    print("Commands: /search, /thinking, /image, /preview, /model, /new, /history, /exit\n")
     
     while True:
         try:
@@ -245,6 +252,18 @@ def main():
                 elif cmd[0] == "/preview":
                     bot.use_preview_mode = not bot.use_preview_mode
                     print(f"[*] Preview Mode: {'ON' if bot.use_preview_mode else 'OFF'}")
+                elif cmd[0] == "/model":
+                    if len(cmd) < 2:
+                        print(f"[*] Current model: {bot.model}")
+                        print(f"[*] Available: {', '.join(AVAILABLE_MODELS)}")
+                        print(f"[*] Usage: /model glm-5")
+                    elif cmd[1] in AVAILABLE_MODELS:
+                        bot.model = cmd[1]
+                        bot.messages = []
+                        bot.chat_id = str(uuid.uuid4())
+                        print(f"[*] Model switched to: {bot.model} (history cleared)")
+                    else:
+                        print(f"[!] Unknown model '{cmd[1]}'. Available: {', '.join(AVAILABLE_MODELS)}")
                 else:
                     print("[!] Unknown command.")
                 continue
